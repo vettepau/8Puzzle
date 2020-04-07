@@ -2,13 +2,15 @@ import java.util.ArrayList;
 
 public class Board {
 
+    private State state;
+
     /**
      * construct a board from an N-by-N array of tiles
      * @param tiles
      */
-    public Board(int[][] tiles)        
+    public Board(int[][] tiles)
     {
-
+        state = new State(tiles);
     }
 
     /**
@@ -48,13 +50,23 @@ public class Board {
         return null;
     }
 
+
+    public boolean move(int direction)
+    {
+        State newState = state.nextState(direction);
+        if(newState == null)
+            return false;
+        state = newState;
+        return true;
+    }
+
     /**
      *
-     * @returna string representation of the board
+     * @return a string representation of the board
      */
     public String toString()
     {
-        return "";
+        return state.toString();
     }
 
     /**
@@ -63,6 +75,20 @@ public class Board {
      */
     public static void main(String[] args)
     {
-
+        int[][] testBoard = {
+                {1,2,3},
+                {4,0,6},
+                {7,8,5}
+        };
+        Board board = new Board(testBoard);
+        System.out.println(board);
+        board.move(State.DOWN);
+        System.out.println(board);
+        board.move(State.DOWN);
+        System.out.println(board);
+        board.move(State.LEFT);
+        System.out.println(board);
+        board.move(State.RIGHT);
+        System.out.println(board);
     }
 }
