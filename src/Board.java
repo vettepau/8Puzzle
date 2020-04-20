@@ -27,6 +27,7 @@ public class Board {
         previous = null;
         numMoves = 0;
 
+
         size = new Dimension(tiles.length, tiles[0].length);
 
         for (int i = 0; i < position.length; i++) {
@@ -76,6 +77,7 @@ public class Board {
 
         previous = prev;
         numMoves = prev.numMoves + 1;
+        size = prev.size;
     }
 
 
@@ -85,8 +87,8 @@ public class Board {
     }
 
     /**
-     *
-     * @return number of blocks out of place
+     * heuristic for board completion
+     * @return number of blocks out of place (not counting blank)
      */
     public int hamming()
     {
@@ -94,8 +96,8 @@ public class Board {
     }
 
     /**
-     *
-     * @return sum of Manhattan distances between blocks and goal
+     * heuristic for board completion
+     * @return sum of Manhattan distances between blocks and goal (not counting blank)
      */
     public int manhattan()
     {
@@ -184,7 +186,7 @@ public class Board {
 
         public Board next(int dir){
             if(!canMove(dir))
-                return null;
+                return this;
             return new Board(this, dir);
         }
 

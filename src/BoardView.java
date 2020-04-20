@@ -65,7 +65,7 @@ public class BoardView extends JDialog {
         // LEFT
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                model.move(Board.State.LEFT);
+                model = model.next(Board.LEFT);
                 updateView();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -73,7 +73,7 @@ public class BoardView extends JDialog {
         // RIGHT
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                model.move(Board.State.RIGHT);
+                model = model.next(Board.RIGHT);
                 updateView();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -81,7 +81,7 @@ public class BoardView extends JDialog {
         // UP
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                model.move(Board.State.UP);
+                model = model.next(Board.UP);
                 updateView();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -89,7 +89,7 @@ public class BoardView extends JDialog {
         // DOWN
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                model.move(Board.State.DOWN);
+                model = model.next(Board.DOWN);
                 updateView();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -128,7 +128,4 @@ public class BoardView extends JDialog {
     }
 
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }
