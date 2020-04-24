@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class Board {
 
@@ -92,7 +93,21 @@ public class Board {
      */
     public int hamming()
     {
-        return 0;
+        int count = 1;
+        int counter = 0;
+        int outPlace = 0;
+
+        while(counter != 9){
+            for(int y = 0; y < 3; y++){
+                for(int x = 0; x < 3; x++){
+                    if(position[y][x] != count){
+                        outPlace++;
+                    }
+                    count++;
+                }
+            }
+        }
+        return outPlace;
     }
 
     /**
@@ -101,7 +116,30 @@ public class Board {
      */
     public int manhattan()
     {
-        return 0;
+        double row = 0;
+        int column = 0;
+        int num = 1;
+        int distanceCount = 0;
+        for(int y = 0; y < 3; y++){
+            for(int x = 0; x < 3; x++){
+                column = find(num)%10;
+                row = find(num)/10;
+                row = java.lang.Math.floor(row);
+                distanceCount += java.lang.Math.abs(y-(int)row) + java.lang.Math.abs(x-column);
+            }
+        }
+        return distanceCount;
+    }
+
+    public int find(int num){
+        for(int y = 0; y < 3; y++){
+            for(int x = 0; x < 3; x++){
+                if(position[y][x] == num){
+                    return y * 10 + x;
+                }
+            }
+        }
+        return -1;
     }
 
     /**
